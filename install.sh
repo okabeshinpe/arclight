@@ -2,6 +2,11 @@
 
 set -e
 
+if [[ $EUID -eq 0 ]]; then
+    echo "Error: Do not run this installer as root."
+    exit 1
+fi
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
@@ -25,6 +30,7 @@ packages=(
     hyprlock
     kitty
     nwg-look
+    pavucontrol
     rofi
     thunar
     waybar
@@ -83,6 +89,14 @@ done
 if [[ -d "$BACKUP_DIR" ]]; then
     echo "Existing configuration backed up to:"
     echo "$BACKUP_DIR"
+fi
+
+WALLPAPER="$HOME/Pictures/Wallpapers/frierenTwo.png"
+
+if [[ ! -f "$WALLPAPER" ]]; then
+    echo "Warning: Wallpaper not found."
+    echo "Expected: $WALLPAPER"
+    echo "Please place the wallpaper there manually."
 fi
 
 echo "Configuration files restored successfully."
