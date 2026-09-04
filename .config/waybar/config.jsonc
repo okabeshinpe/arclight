@@ -1,0 +1,56 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "margin": "4px 5px 0px 5px",
+    "spacing": 4,
+
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["mpris", "cpu", "memory", "pulseaudio", "custom/power"],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "default": "○"
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %B %d %Y}"
+    },
+
+    "mpris": {
+        "format": "{status_icon} {title} - {artist}",
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸"
+        },
+        "max-length": 40
+    },
+
+    "cpu": {
+        "format": "CPU {usage}%",
+        "interval": 2
+    },
+
+    "memory": {
+        "format": "RAM {percentage}%",
+        "interval": 2
+    },
+
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUTED",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "on-click": "wlogout -b 4 -c 20 -r 20",
+        "tooltip": false
+    }
+}

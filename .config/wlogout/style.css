@@ -1,0 +1,62 @@
+*{
+    font-family: "Orbitron";
+    font-size: 16px;
+}
+window {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+button {
+    color: #FFFFFF;
+    background-color: rgba(13, 13, 13, 0.45);
+    border: 3px solid #333333;
+    border-radius: 200px;
+    margin: 20px;
+    padding: 20px;
+}
+button:hover {
+    background-color: rgba(13, 13, 13, 0.3);
+    color: #FFFFFF;
+    border-color: #ffffff;
+}
+
+button:focus {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-color: #ffffff;
+    outline: none;
+    box-shadow: none;
+}
+
+button:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+#shutdown {
+    background-image: url("./icons/shutdown.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+}
+
+#logout {
+    background-image: url("./icons/logout.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+}
+
+#reboot {
+    background-image: url("./icons/reboot.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+}
+
+#suspend {
+    background-image: url("./icons/suspend.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+}
