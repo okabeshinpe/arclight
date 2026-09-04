@@ -2,6 +2,9 @@
 
 set -e
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 echo "Starting Arclight dotfiles installation..."
 
 if [[ ! -f /etc/arch-release ]]; then
@@ -12,6 +15,8 @@ fi
 echo "Arch Linux detected."
 
 packages=(
+    base-devel
+    git
     awww
     cliphist
     dunst
@@ -22,9 +27,12 @@ packages=(
     nwg-look
     rofi
     thunar
-    ttf-orbitron
     waybar
     wl-clipboard
+)
+
+aur_packages=(
+    ttf-orbitron
     wlogout
 )
 
@@ -34,6 +42,25 @@ sudo pacman -S --needed "${packages[@]}"
 
 echo "Packages installed successfully."
 
+if ! command -v paru &> /dev/null; then
+    echo "paru not found. Installing paru..."
+
+PARU_DIR="$(mktemp -d)"
+
+git clone https://aur.archlinux.org/paru.git "$PARU_DIR"
+cd "$PARU_DIR"
+makepkg -si --noconfirm
+cd -
+rm -rf "$PARU_DIR"
+
+fi
+
+echo "Installing AUR packages..."
+
+paru -S --needed "${aur_packages[@]}"
+
+echo "AUR packages installed successfully."
+
 echo "Restoring configuration files..."
 
 CONFIG_DIR="$HOME/.config"
@@ -41,7 +68,7 @@ BACKUP_DIR="$HOME/.config-backup-arclight-$(date +%Y%m%d-%H%M%S)"
 
 mkdir -p "$CONFIG_DIR"
 
-for item in .config/*; do
+for item in "$SCRIPT_DIR"/.config/*; do
     name=$(basename "$item")
 
     if [[ -e "$CONFIG_DIR/$name" ]]; then
