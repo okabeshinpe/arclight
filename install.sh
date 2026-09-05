@@ -132,12 +132,4 @@ if [[ -d "$BACKUP_DIR" ]]; then
     echo "$BACKUP_DIR"
 fi
 
-WALLPAPER="$HOME/Pictures/Wallpapers/frierenTwo.png"
-
-if [[ ! -f "$WALLPAPER" ]]; then
-    echo "Warning: Wallpaper not found."
-    echo "Expected: $WALLPAPER"
-    echo "Please place the wallpaper there manually."
-fi
-
 echo "Configuration files restored successfully."
