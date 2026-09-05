@@ -86,6 +86,28 @@ paru -S --needed "${aur_packages[@]}"
 
 echo "AUR packages installed successfully."
 
+echo "Setting up wallpaper picker..."
+
+PICKER_DIR="$SCRIPT_DIR/apps/qs-wallpaper-picker"
+
+if [[ ! -f "$PICKER_DIR/config/Settings.qml" ]]; then
+    cp "$PICKER_DIR/config/Settings.qml.example" \
+       "$PICKER_DIR/config/Settings.qml"
+fi
+
+chmod +x "$PICKER_DIR/scripts/open_picker.sh"
+
+mkdir -p "$HOME/.local/bin"
+
+cat > "$HOME/.local/bin/arclight-wallpaper-picker" <<EOF
+#!/usr/bin/env bash
+exec "$PICKER_DIR/scripts/open_picker.sh" "\$@"
+EOF
+
+chmod +x "$HOME/.local/bin/arclight-wallpaper-picker"
+
+echo "Wallpaper picker configured."
+
 echo "Restoring configuration files..."
 
 CONFIG_DIR="$HOME/.config"
