@@ -22,6 +22,7 @@ echo "Arch Linux detected."
 packages=(
     base-devel
     git
+    sudo
     awww
     cliphist
     dunst
@@ -35,6 +36,7 @@ packages=(
     thunar
     waybar
     wl-clipboard
+    xdg-utils
 )
 
 aur_packages=(
