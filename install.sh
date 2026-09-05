@@ -32,7 +32,7 @@ packages=(
     papirus-icon-theme
     playerctl
     qt5ct
-    ttf-iosevka
+    ttc-iosevka
     ttf-iosevka-nerd
     ttf-jetbrains-mono-nerd
     cliphist
