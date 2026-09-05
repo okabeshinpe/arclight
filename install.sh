@@ -40,6 +40,7 @@ packages=(
 aur_packages=(
     ttf-orbitron
     wlogout
+    zen-browser-bin
 )
 
 echo "Installing packages..."
