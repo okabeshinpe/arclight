@@ -29,9 +29,12 @@ packages=(
     hypridle
     hyprland
     hyprlock
+    imagemagick
     kitty
     nwg-look
     pavucontrol
+    python
+    qt6-multimedia
     rofi
     thunar
     waybar
@@ -40,6 +43,7 @@ packages=(
 )
 
 aur_packages=(
+    quickshell
     ttf-orbitron
     wlogout
     zen-browser-bin
