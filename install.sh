@@ -24,6 +24,17 @@ packages=(
     git
     sudo
     awww
+    brightnessctl
+    grim
+    hyprpolkitagent
+    slurp
+    xdg-desktop-portal-hyprland
+    papirus-icon-theme
+    playerctl
+    qt5ct
+    ttf-iosevka
+    ttf-iosevka-nerd
+    ttf-jetbrains-mono-nerd
     cliphist
     dunst
     hypridle
@@ -43,6 +54,7 @@ packages=(
 )
 
 aur_packages=(
+    bibata-cursor-theme
     quickshell
     ttf-orbitron
     wlogout
