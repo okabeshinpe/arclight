@@ -266,7 +266,7 @@ hl.bind(mainMod .. " + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim - | wl-copy"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p '' -theme ~/.config/rofi/config.rasi | cliphist decode | wl-copy"))
 
-hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("bash /home/rhinsova/dotfiles/.config/hypr/scripts/lock.sh"))
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("bash $HOME/dotfiles/.config/hypr/scripts/lock.sh"))
 
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
