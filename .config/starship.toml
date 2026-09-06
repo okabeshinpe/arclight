@@ -1,0 +1,29 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+$character"""
+
+[directory]
+style = "white"
+truncation_length = 4
+truncate_to_repo = false
+
+[git_branch]
+format = "[$branch]($style)"
+style = "dimmed white"
+
+[git_status]
+format = " [$all_status$ahead_behind]($style)"
+style = "dimmed white"
+
+[character]
+success_symbol = "[❯](white)"
+error_symbol = "[✗](white)"
+vimcmd_symbol = "[❮](white)"
+
+[cmd_duration]
+min_time = 2000
+format = " [$duration]($style)"
+style = "dimmed white"
