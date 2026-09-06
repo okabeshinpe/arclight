@@ -25,10 +25,20 @@ export QS_WALLPAPER_ENABLE_ML4W="${QS_WALLPAPER_ENABLE_ML4W:-0}"
 
 "$SCRIPT_DIR/sync_thumbs.sh" "$WALLPAPER_DIR"
 
-if command -v flock >/dev/null 2>&1; then
-    exec flock -n -o \
-        "$STATE_DIR/picker.lock" \
-        quickshell -p "$PROJECT_DIR/Main.qml"
+# Only one wallpaper picker may run at a time.
+exec 9>"$STATE_DIR/picker.lock"
+
+if ! flock -n 9; then
+    exit 0
 fi
 
-exec quickshell -p "$PROJECT_DIR/Main.qml"
+# Temporarily give Escape to the wallpaper picker.
+hyprctl eval 'hl.bind("ESCAPE", hl.dsp.exec_cmd("pkill -f \"quickshell -p '"$PROJECT_DIR"'/Main.qml\""))'
+
+cleanup() {
+    hyprctl eval 'hl.unbind("ESCAPE")' >/dev/null 2>&1 || true
+}
+
+trap cleanup EXIT
+
+quickshell -p "$PROJECT_DIR/Main.qml"

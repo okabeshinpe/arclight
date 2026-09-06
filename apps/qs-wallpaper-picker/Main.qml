@@ -2,13 +2,41 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 import "."
 
-FloatingWindow {
+PanelWindow {
     id: root
+
     visible: true
-    title: "wallpaper-picker"
-    color: "transparent"
+    color: "#66000000"
+
+    anchors {
+        top: true
+        bottom: true
+        left: true
+        right: true
+    }
+
+    margins {
+        left: 0
+        right: 0
+	top: 0
+	bottom: 0
+    }
+
+    focusable: true
+    aboveWindows: true
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Escape) {
+            event.accepted = true
+            Qt.quit()
+        }
+    }
+    exclusionMode: ExclusionMode.Ignore
 
     property string onlineSearchScript: {
         let path = Qt.resolvedUrl("scripts/online_search.sh").toString()
@@ -31,34 +59,15 @@ FloatingWindow {
         }
     }
 
-    implicitWidth: Math.round(Screen.width * 0.94)
-    implicitHeight: Math.round(Screen.height * 0.30)
-
-    Shortcut {
-        sequence: "Escape"
-        context: Qt.ApplicationShortcut
-        enabled: !picker.isApplying && picker.currentFilter !== "Search"
-        onActivated: Qt.quit()
-    }
-
-    Shortcut {
-        sequence: "Return"
-        context: Qt.ApplicationShortcut
-        enabled: picker.currentFilter === "Search"
-                 && !picker.isApplying
-                 && !picker.isSearchingOnline
-        onActivated: {
-            const normalized = String(picker.searchQuery || "").trim()
-            if (normalized !== "") {
-                picker.triggerOnlineSearch(normalized)
-            }
-        }
-    }
-
     WallpaperPicker {
         id: picker
         anchors.fill: parent
         focus: true
+
+        Keys.onEscapePressed: {
+            event.accepted = true
+            Qt.quit()
+        }
 
         onSearchQueryChanged: root.invalidateOnlineSearch()
     }
@@ -108,6 +117,27 @@ FloatingWindow {
                 color: "#D9FFFFFF"
                 font.pixelSize: 11
                 font.family: "JetBrains Mono"
+            }
+        }
+    }
+
+    Shortcut {
+        sequence: "Escape"
+        context: Qt.WindowShortcut
+        enabled: !picker.isApplying
+        onActivated: Qt.quit()
+    }
+
+    Shortcut {
+        sequence: "Return"
+        context: Qt.ApplicationShortcut
+        enabled: picker.currentFilter === "Search"
+                 && !picker.isApplying
+                 && !picker.isSearchingOnline
+        onActivated: {
+            const normalized = String(picker.searchQuery || "").trim()
+            if (normalized !== "") {
+                picker.triggerOnlineSearch(normalized)
             }
         }
     }
