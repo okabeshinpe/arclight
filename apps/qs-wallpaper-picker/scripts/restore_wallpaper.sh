@@ -32,7 +32,6 @@ pkill mpvpaper 2>/dev/null || true
 
 if [[ "$wallpaper_type" == "video" ]]; then
     awww clear >/dev/null 2>&1 || true
-    swww clear >/dev/null 2>&1 || true
 
     mpvpaper \
         -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample --panscan=1.0 --video-unscaled=no' \

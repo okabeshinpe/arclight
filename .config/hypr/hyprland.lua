@@ -53,7 +53,7 @@ local menu = "rofi -show drun"
    hl.exec_cmd("waybar")
    hl.exec_cmd("dunst")
    hl.exec_cmd("awww-daemon")
-   hl.exec_cmd("awww img ~/Pictures/Wallpapers/frierenTwo.png")
+   hl.exec_cmd("$HOME/dotfiles/apps/qs-wallpaper-picker/scripts/restore_wallpaper.sh")
    hl.exec_cmd("hypridle")
    hl.exec_cmd("wl-paste --type text --watch cliphist store")
    hl.exec_cmd("wl-paste --type image --watch cliphist store")

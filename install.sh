@@ -26,6 +26,9 @@ packages=(
     awww
     brightnessctl
     grim
+    ffmpeg
+    pipewire
+    wireplumber
     hyprpolkitagent
     slurp
     xdg-desktop-portal-hyprland
@@ -55,6 +58,7 @@ packages=(
 
 aur_packages=(
     bibata-cursor-theme
+    mpvpaper
     quickshell
     ttf-orbitron
     wlogout
@@ -98,6 +102,7 @@ fi
 chmod +x "$PICKER_DIR/scripts/open_picker.sh"
 
 mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/Wallpapers"
 
 cat > "$HOME/.local/bin/arclight-wallpaper-picker" <<EOF
 #!/usr/bin/env bash

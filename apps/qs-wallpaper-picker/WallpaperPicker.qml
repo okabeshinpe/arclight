@@ -297,7 +297,6 @@ Item {
             wallpaperCmd = `
                 pkill mpvpaper || true
                 awww clear || true
-                swww clear || true
                 mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample --panscan=1.0 --video-unscaled=no' '*' "$WALL_FILE" >/tmp/mpvpaper.log 2>&1 &
             `
             lockBgCmd = `cp "$THUMB_FILE" /tmp/lock_bg.png`
